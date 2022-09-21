@@ -1,11 +1,9 @@
 import React from 'react'
 import { useContext } from 'react'
-import { context } from "../context/authContext"
+import { context, useAuth } from "../context/authContext"
 
 export default function Home() {
-  //const authContext = useContext(context)
-
   return (
-    <div> Hola 2! </div>
+    <div> Hola 1! </div>
   )
 }
