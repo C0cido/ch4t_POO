@@ -1,8 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
 import { useAuth }from '../context/authContext'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Alert } from './Alert';
+
 
 export default function Login() {
   const [user, setUser] = useState({
@@ -45,7 +46,7 @@ export default function Login() {
           <input 
             type="email" 
             name="email" 
-            placeholder="youremail@company.ltd"
+            placeholder=" "
               onChange={handleChange}
           />
           <label htmlFor="password"> Password </label>
@@ -56,9 +57,10 @@ export default function Login() {
             id="password"
               onChange={handleChange}
           />
-          <button> Login </button>
+          <button> Entrar </button>
         </form>
-        <button onClick={handleGoogleSignin}> Login with Google </button>
+        <p> No tenes una cuenta? <Link to='/register'> Registrarse </Link></p>
+        <button onClick={handleGoogleSignin}> Conectarse con Google </button>
     </div>
   )
 }

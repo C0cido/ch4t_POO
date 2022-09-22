@@ -38,7 +38,7 @@ export default function Register() {
           <input 
             type="email" 
             name="email" 
-            placeholder="youremail@company.ltd"
+            placeholder=" "
               onChange={handleChange}
           />
 
@@ -51,7 +51,7 @@ export default function Register() {
               onChange={handleChange}
           />
 
-          <button> Register </button>
+          <button> Registrarse </button>
         </form>
     </div>
   )
