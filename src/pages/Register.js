@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useAuth }from '../context/authContext'
 import { useNavigate } from 'react-router-dom';
+import { Alert } from './Alert';
 
 export default function Register() {
   const [user, setUser] = useState({
@@ -22,7 +23,7 @@ export default function Register() {
     setError('')
     try {
       await signup(user.email, user.password)
-      navigate('/')
+      navigate('/');
     }catch (error){
       console.log(error.code)
       setError(error.message);
@@ -31,7 +32,7 @@ export default function Register() {
 
   return (
     <div>
-      {error && <p>{error}</p>}
+      {error && <Alert message={error}/>}
         <form onSubmit={handleSubmit}>
           <label htmlFor="email"> Email </label>
           <input 
