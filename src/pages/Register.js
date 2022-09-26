@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useAuth }from '../context/authContext'
 import { useNavigate } from 'react-router-dom';
-import { Alert } from './Alert';
+import Alert from './Alert';
 
 export default function Register() {
   const [user, setUser] = useState({
@@ -31,28 +31,34 @@ export default function Register() {
   }
 
   return (
-    <div>
-      {error && <Alert message={error}/>}
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="email"> Email </label>
-          <input 
-            type="email" 
-            name="email" 
-            placeholder=" "
-              onChange={handleChange}
-          />
-
-          <label htmlFor="password"> Password </label>
-          <input 
-            type="password" 
-            name="password" 
-            placeholder="******"
-            id="password"
-              onChange={handleChange}
-          />
-
-          <button> Registrarse </button>
-        </form>
-    </div>
+    <body className='text-center'>
+      <main className='form-signin w-100 m-auto'>
+        {error && <Alert message={error}/>}
+          <form onSubmit={handleSubmit}>
+            <h1 className='h3 mb-3 fw-normal'> Registrarse </h1>
+            <div className='form-floating'>
+            <input 
+              type="email" 
+              className='form-control'
+              id='floatingInput'
+              name="email" 
+                onChange={handleChange}
+            />
+            <label for='floatingInput'> Correo Electronico </label>
+            </div>
+            <div className='form-floating'>
+            <input 
+              type="password" 
+              className='form-control'
+              name="password" 
+              id="floatingPassword"
+                onChange={handleChange}
+            />
+            <label for='floatingPassword'> Contraseña </label>
+            </div>
+            <button className='w-100 btn btn-lg btn-primary'> Registrarse </button>
+          </form>
+      </main>
+    </body>
   )
 }

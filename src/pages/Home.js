@@ -14,10 +14,10 @@ export default function Home() {
   return (
     <div> 
       <h1>
-        Welcome {user.displayName || user.email}
+        Hola, {user.displayName || user.email}
       </h1>
       <button onClick={handleLogout}>
-        Logout
+        Cerrar Sesion
       </button>
     </div>
   )

@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useAuth }from '../context/authContext'
 import { Link, useNavigate } from 'react-router-dom';
-import { Alert } from './Alert';
+import Alert from './Alert';
 
 
 export default function Login() {
@@ -39,28 +39,36 @@ export default function Login() {
   }
 
   return (
-    <div>
-      {error && <Alert message={error}/>}
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="email"> Email </label>
-          <input 
-            type="email" 
-            name="email" 
-            placeholder=" "
-              onChange={handleChange}
-          />
-          <label htmlFor="password"> Password </label>
-          <input 
-            type="password" 
-            name="password" 
-            placeholder="******"
-            id="password"
-              onChange={handleChange}
-          />
-          <button> Entrar </button>
-        </form>
-        <p> No tenes una cuenta? <Link to='/register'> Registrarse </Link></p>
-        <button onClick={handleGoogleSignin}> Conectarse con Google </button>
-    </div>
+    <body className='text-center'>
+    <main className='form-signin w-100 m-auto'>
+        {error && <Alert message={error}/>}
+          <form onSubmit={handleSubmit}>
+          <h1> Iniciar Sesion </h1>
+          <div className='form-floating'>
+            <input 
+              type="email" 
+              className='form-control'
+              id='floatingInput'
+              name="email" 
+                onChange={handleChange}
+            />
+            <label for='floatingInput'> Correo Electronico </label>
+          </div>
+          <div className='form-floating'>
+            <input 
+              type="password" 
+              className='form-control'
+              id='floatingPassword'
+              name="password" 
+                onChange={handleChange}
+            />
+            <label for='floatingPassword'> Contraseña </label>
+          </div>
+            <button className='w-100 btn btn-lg btn-primary'> Entrar </button>
+          </form>
+          <p> No tenes una cuenta? <Link to='/register'> Registrarse </Link></p>
+          <button className='w-100 btn btn-lg btn-primary' onClick={handleGoogleSignin}> Conectarse con Google </button>
+    </main>
+    </body>
   )
 }
