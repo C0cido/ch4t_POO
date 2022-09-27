@@ -11,7 +11,7 @@ export default function Login() {
     password:'',
   });
   
-  const { login, loginWithGoogle }= useAuth();
+  const { login, loginWithGoogle, loginWithGithub }= useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState();
 
@@ -22,6 +22,14 @@ export default function Login() {
     try {
       await loginWithGoogle();
       navigate('/');
+    } catch (error) {
+      setError(error.message);
+    }
+  }
+  const handleGithubSignin = async () => {
+    try {
+      await loginWithGithub();
+      navigate('/')
     } catch (error) {
       setError(error.message);
     }
@@ -64,10 +72,13 @@ export default function Login() {
             />
             <label for='floatingPassword'> Contraseña </label>
           </div>
-            <button className='w-100 btn btn-lg btn-primary'> Entrar </button>
+            <button className='w-10 btn btn-lg btn-primary'> Entrar </button>
           </form>
+          <button className='w-10 btn btn-dark btn-primary' onClick={handleGoogleSignin}> Conectarse con Google </button>
+          
+          <button className='w-10 btn btn-dark btn-primary' onClick={handleGithubSignin}> Conectarse con Github </button>
+          
           <p> No tenes una cuenta? <Link to='/register'> Registrarse </Link></p>
-          <button className='w-100 btn btn-lg btn-primary' onClick={handleGoogleSignin}> Conectarse con Google </button>
     </main>
     </body>
   )

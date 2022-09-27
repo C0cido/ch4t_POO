@@ -8,6 +8,7 @@ export default function Register() {
   const [user, setUser] = useState({
     email: '',
     password:'',
+    
   });
   
   const { signup }= useAuth();

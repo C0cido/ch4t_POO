@@ -1,8 +1,7 @@
 import React from "react"
 
 export default function Alert ({message}) {
-    return <div className="bg-red-500 border border-red-600
-     text-red-900 px-4 py-3 rounded relative mb-2">
+    return <div className='alert alert-danger' role='alert'>
         <span>{message}</span>
     </div>
 }

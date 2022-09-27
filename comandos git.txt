@@ -1,0 +1,6 @@
+git branch "nombre de rama"
+git cheackout -cambiar ramas-
+git add . 
+git pull 
+git commit -m "comentarios"
+git push 
