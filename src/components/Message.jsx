@@ -18,7 +18,6 @@ const Message = ({ message }) => {
             </div>
             <img src={message.photo} alt="user" referrerPolicy="no-referrer"></img>
         </article>
-     );
+    );
 }
- 
 export default Message;

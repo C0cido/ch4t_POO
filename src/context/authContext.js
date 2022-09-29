@@ -1,7 +1,8 @@
 import React from "react";
 import { createContext, useContext, useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup, GithubAuthProvider} from 'firebase/auth';
-import { auth } from '../firebase';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup, GithubAuthProvider, sendPasswordResetEmail} from 'firebase/auth';
+import { auth, db } from '../firebase';
+import {doc, setDoc, updateDoc } from 'firebase/firestore';
 
 export const authContext = createContext()
 export const useAuth = () => {
@@ -31,6 +32,27 @@ export function AuthProvider ({ children }){
         const githubProvider = new GithubAuthProvider()
         return signInWithPopup (auth, githubProvider)
     }
+    //Guardar Usuario
+    const saveUser = async (user) => {
+        if (!user) return
+        await setDoc (doc(db,"user", user.user.uid),{
+            uid: user.user.uid,
+            name: user.user.displayName,
+            email: user.user.email,
+            photo_url: user.user.photoURL,
+            itsOnline: false,
+        })
+    }
+    //Cambiar estado online
+    const stateUser = async (user) => {
+        await updateDoc (doc(db, "user", user.user.uid),{
+            itsOnline : true
+        })
+    }
+    //Restablecer Contraseña
+    const resetPassword = (email) => {
+        sendPasswordResetEmail(auth, email);
+    }
     useEffect(()=>{
     const unsubscribe = onAuthStateChanged (auth, (currentUser) => {
             setUser(currentUser);
@@ -39,7 +61,7 @@ export function AuthProvider ({ children }){
         return () => unsubscribe();
     }, [])  
     return (
-        <authContext.Provider value={{ signup, login, user, logout, loading, loginWithGoogle, loginWithGithub }}>
+        <authContext.Provider value={{ signup, login, user, logout, loading, loginWithGoogle, loginWithGithub, saveUser, stateUser, resetPassword }}>
             {children}
         </authContext.Provider>
     )

@@ -31,7 +31,7 @@ export default function Home() {
   return (
     <section className='chat-content'>
       <h1>
-        Hola, {user.displayName || user.email}
+        Bienvenido a la Sala 1, {user.displayName || user.email}
       </h1>
       {
         messages && messages.map(item => (

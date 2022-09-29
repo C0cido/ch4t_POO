@@ -11,7 +11,7 @@ export default function Register() {
     
   });
   
-  const { signup }= useAuth();
+  const { signup, saveUser }= useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState();
 
@@ -23,8 +23,9 @@ export default function Register() {
     e.preventDefault()
     setError('')
     try {
-      await signup(user.email, user.password)
-      navigate('/');
+      const defaultUser = await signup(user.email, user.password)
+      saveUser(defaultUser);
+      navigate('/login');
     }catch (error){
       console.log(error.code)
       setError(error.message);
@@ -32,7 +33,6 @@ export default function Register() {
   }
 
   return (
-    <body className='text-center'>
       <main className='form-signin w-100 m-auto'>
         {error && <Alert message={error}/>}
           <form onSubmit={handleSubmit}>
@@ -45,7 +45,7 @@ export default function Register() {
               name="email" 
                 onChange={handleChange}
             />
-            <label for='floatingInput'> Correo Electronico </label>
+            <label htmlFor='floatingInput'> Correo Electronico </label>
             </div>
             <div className='form-floating'>
             <input 
@@ -55,11 +55,10 @@ export default function Register() {
               id="floatingPassword"
                 onChange={handleChange}
             />
-            <label for='floatingPassword'> Contraseña </label>
+            <label htmlFor='floatingPassword'> Contraseña </label>
             </div>
             <button className='w-100 btn btn-lg btn-primary'> Registrarse </button>
           </form>
       </main>
-    </body>
   )
 }

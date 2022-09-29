@@ -27,6 +27,6 @@ const SendMessage = () => {
                 Enviar
             </button>
         </form>
-     );
+     ); 
 }
 export default SendMessage
