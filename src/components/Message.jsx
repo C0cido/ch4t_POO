@@ -16,7 +16,7 @@ const Message = ({ message }) => {
                     <p className="text">{message.text}</p>
                 </div>
             </div>
-            <img src={message.photo} alt="user" referrerPolicy="no-referrer"></img>
+            <img src={message.photo || '../assets/default_user.jpg'} alt="user-default" referrerPolicy="no-referrer"></img>
         </article>
     );
 }

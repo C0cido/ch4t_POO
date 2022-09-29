@@ -11,7 +11,7 @@ const SendMessage = () => {
             text: input,
             name: displayName,
             uid,
-            photo: photoURL,
+            photo: photoURL || 'default_user.jpg',
             timestamp: serverTimestamp()
         })
         setInput('');
